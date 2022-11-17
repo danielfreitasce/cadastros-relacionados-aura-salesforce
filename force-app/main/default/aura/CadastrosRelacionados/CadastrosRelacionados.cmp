@@ -1,0 +1,40 @@
+<aura:component extensible="true" abstract="true" implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:isUrlAddressable" controller="CadastrosRelacionadosController" access="global" >
+    
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="loaded" type="Boolean" default="true" />
+    <aura:attribute name="iconName" type="String" />
+    <aura:attribute name="tableTitle" type="String" />
+    <aura:attribute name="listSize" type="Integer"  />
+    
+    <aura:attribute name="data" type="Object"/> 
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="errors" type="Object" default="[]"/>
+    
+    <aura:if isTrue="{! v.loaded }">
+        <lightning:spinner size="large" variant="brand" title="Por favor aguarde um momento, estamos carregando os registros." alternativeText="Carregando os registros." />
+    </aura:if>
+    
+    
+    <aura:if isTrue="{!v.listSize}">
+        <lightning:card iconName="{!v.iconName}" title="{!v.tableTitle}">
+            <div class="tamanho-tabela  slds-box" style="height: 200px"> 
+                <lightning:datatable
+                                     hideCheckboxColumn ="true"                 
+                                     columns="{!v.columns }"
+                                     keyField="idOpp"
+                                     data="{!v.data }"
+                                     errors="{!v.errors }"    
+                                     />                 
+            </div>  
+        </lightning:card>
+        <aura:set attribute="else">           
+            
+            <lightning:card iconName="{!v.iconName}" title="{!'Não encontramos cadastros relacionados em ' + v.tableTitle}">
+            </lightning:card>
+            
+        </aura:set>
+    </aura:if>    
+    <p class ="slds-border_bottom"></p>
+    
+    {!v.body}
+</aura:component>

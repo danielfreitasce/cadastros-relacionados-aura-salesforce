@@ -1,0 +1,3 @@
+<aura:component implements="flexipage:availableForRecordHome" extends="c:CadastrosRelacionados" controller="CadastrosRelacionadosController" access="global" >
+    <aura:handler event="c:SetaValorNumeroCadastroEvt" action="{!c.preencherTabela}"/>
+</aura:component>

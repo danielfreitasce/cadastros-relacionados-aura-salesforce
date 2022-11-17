@@ -1,0 +1,16 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" extends="c:CadastrosRelacionados" controller="CadastrosRelacionadosController" access="global" >
+
+	<aura:attribute name="leadRecord" type="Object"/>
+    <aura:attribute name="recordLoadError" type="String"/>
+    
+    <force:recordData aura:id="recordLoader"
+    recordId="{!v.recordId}"
+    fields="NumeroCadastro__c"
+    targetFields="{!v.leadRecord}"
+    targetError="{!v.recordLoadError}"
+    recordUpdated="{!c.preencherTabela}" 
+    />
+    
+	<aura:registerEvent name="setaNumeroCadastroEvento" type="c:SetaValorNumeroCadastroEvt"/>
+  
+</aura:component>
